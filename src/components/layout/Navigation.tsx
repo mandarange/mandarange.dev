@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
@@ -13,7 +14,6 @@ function cn(...inputs: ClassValue[]) {
 const navItems = [
   { name: "Home", path: "/" },
   { name: "Writing", path: "/writing" },
-  { name: "Projects", path: "/projects" },
   { name: "Principles", path: "/principles" },
   { name: "Now", path: "/now" },
   { name: "About", path: "/about" },
@@ -26,9 +26,14 @@ export function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-offwhite/80 backdrop-blur-md border-b border-white/5">
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="group flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-mandarange flex items-center justify-center text-offwhite font-serif italic font-bold text-xl">
-            M
+        <Link href="/" className="group flex items-center gap-3">
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-mandarange/10 border border-white/5 shadow-inner">
+            <Image
+              src="/mandarange.png"
+              alt="M"
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-300"
+            />
           </div>
           <span className="font-serif italic text-xl tracking-tight text-charcoal group-hover:text-mandarange transition-colors">
             Mandarange

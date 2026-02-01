@@ -1,0 +1,54 @@
+# mandarange.dev
+
+> Personal site of Daniel Choi — software engineer, CTO at Hypercape Inc., CEO at WeKlem Inc.
+
+## About
+
+Daniel Choi is a software engineer whose career spans game graphics and shader development, cross-platform app engineering, and platform architecture for commerce systems. He currently serves as CTO at Hypercape Inc. (K-beauty commerce infrastructure) and CEO at WeKlem Inc. (cross-platform development studio, est. 2021).
+
+## Engineering Philosophy
+
+Daniel's work is guided by six pillars:
+
+1. **Data IS the Product** — SSOT (Single Source of Truth) is the top priority. Copies breed operational cost explosions. Schema reviews before feature reviews.
+2. **Operational Simplicity** — Idempotent operations, transactional consistency, and clear state management. Design for partial failure.
+3. **Security as Infrastructure** — Enforced at the DB and policy level. Audit trails, IP restrictions, admin tooling.
+4. **Systems Beat Individuals** — Dev standards, PR/review routines, checklists, and decision records. Consistent systems outperform individual heroics.
+5. **Documentation as Operational Tools** — PRDs, playbooks, decision records, migration scenarios, and checklists. They recur because they work.
+6. **AI-Era Readiness** — Documentation and structure must be machine-readable. Engineers who structure knowledge for AI access multiply their output.
+
+## Technical Domains
+
+- Backend: Java, Spring Boot, JPA, MySQL, AWS
+- Frontend: Next.js, React, Tailwind CSS
+- Mobile: Flutter, cross-platform
+- Game: Unity, shader development
+- Infrastructure: Supabase, Vercel, Docker
+
+## Career Timeline
+
+- 2021: Founded WeKlem Studio. Acquired certifications and filed initial patents.
+- 2023: Incorporated WeKlem as a corporation. Launched apps and games; exhibited at industry events.
+- 2024: Patent registered. Expanded WeKlem product portfolio.
+- 2025: Joined Hypercape Inc. as CTO to architect K-beauty commerce infrastructure.
+- Present: Operating K-beauty commerce platform at Hypercape and cross-platform dev business at WeKlem.
+
+## Site Structure
+
+- / — Home page with hero, philosophy preview, career journey, and featured writing
+- /about — Full career story, engineering pillars, tech domains, and timeline
+- /writing — Engineering notes: playbooks, decision records, case studies
+- /writing/[slug] — Individual article pages
+- /principles — Six engineering pillars and operational patterns
+- /now — Current focus areas
+- /contact — Contact form and direct email
+- /rss.xml — RSS feed of all published writing
+
+## Contact
+
+- Email: cdw0424@gmail.com
+- LinkedIn: https://www.linkedin.com/in/daniel-choi-a736a322b/
+- YouTube: https://www.youtube.com/channel/UCMgGulF7OOaIyFfwh-ekFXA
+- Blog: https://m.blog.naver.com/PostList.naver?blogId=cdw0424&tab=1
+- Hypercape: https://biz.hypercape.com/
+- WeKlem: https://www.weklem.com/

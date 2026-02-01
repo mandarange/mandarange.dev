@@ -1,4 +1,4 @@
-import { getPosts } from "@/lib/mdx";
+import { getPosts } from "@/lib/db";
 import { PostCard } from "@/components/branding/PostCard";
 
 export const metadata = {
@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 export default async function WritingPage() {
-  const posts = await getPosts("writing");
+  const posts = await getPosts();
   const tags = Array.from(new Set(posts.flatMap((p) => p.tags))).sort();
 
   return (
