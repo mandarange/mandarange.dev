@@ -52,18 +52,18 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     images: [
       {
-        url: "/mandarange.png",
-        width: 512,
-        height: 512,
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
         alt: `${SITE.title} — ${SITE.name}`,
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${SITE.title} — ${SITE.name}`,
     description: SITE.description,
-    images: ["/mandarange.png"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: SITE.url,
@@ -72,8 +72,12 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/mandarange.png",
-    apple: "/mandarange.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 
