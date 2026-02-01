@@ -1,0 +1,25 @@
+---
+title: "Designing Data Models That Don’t Contradict Themselves"
+date: "2026-02-01"
+excerpt: "How to apply SSOT principles to database schema design to ensure long-term reliability and operational simplicity."
+tags: ["Architecture", "Data Model", "SSOT"]
+type: "playbook"
+---
+
+## The Cost of Contradiction
+
+When data models allow for multiple "truths," the system is doomed to fail.
+
+<Callout type="principle">
+  Single Source of Truth (SSOT) is not just a slogan; it's a promise that every piece of data has exactly one owner and one location.
+</Callout>
+
+## Common Traps
+
+1. Redundant state across services
+2. Implicit relationships without foreign keys
+3. Denormalization without a synchronization strategy
+
+<Callout type="pitfall">
+  Premature optimization through denormalization is the root of most data integrity issues.
+</Callout>

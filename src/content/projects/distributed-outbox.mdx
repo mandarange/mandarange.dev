@@ -1,0 +1,25 @@
+---
+title: "Distributed Outbox System"
+date: "2026-02-01"
+excerpt: "Building a reliable message delivery system using the transactional outbox pattern to ensure data consistency in microservices."
+tags: ["Architecture", "Go", "Kafka"]
+type: "case-study"
+---
+
+## Problem Statement
+
+In a microservices architecture, ensuring that database updates and message publishing happen atomically is a common challenge.
+
+## Approach
+
+I implemented the **Transactional Outbox Pattern** to decouple database transactions from message publishing.
+
+<Callout type="principle">
+  Always favor strong consistency in the data layer and eventual consistency in the messaging layer.
+</Callout>
+
+## Outcome
+
+- **99.99% Reliability** in message delivery.
+- Zero data loss during network partitions.
+- Simplified service logic.

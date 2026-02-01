@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
+  --color-mandarange: #FF6B00;
+  --color-mandarange-soft: rgba(255, 107, 0, 0.1);
+  --color-charcoal: #F5F5F5;
+  --color-offwhite: #0D0D0D;
+  --color-surface: #141414;
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-newsreader);
+
+  --background: var(--color-offwhite);
+  --foreground: var(--color-charcoal);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #0D0D0D;
+  --foreground: #F5F5F5;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif italic font-medium;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Base styles for MDX content */
+.prose {
+  @apply max-w-none text-charcoal/80;
+}
+
+.prose h2, .prose h3 {
+  @apply text-charcoal;
+}
+
+.prose a {
+  @apply text-mandarange no-underline hover:underline;
+}
+
+.prose strong {
+  @apply text-charcoal font-bold;
+}
+
+.prose code {
+  @apply bg-charcoal/5 px-1 py-0.5 rounded text-mandarange;
 }
