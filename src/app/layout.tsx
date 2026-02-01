@@ -111,7 +111,7 @@ function JsonLd() {
       {
         "@type": "Organization",
         name: "Hypercape Inc.",
-        url: "https://biz.hypercape.com/",
+        url: "https://www.hypercape.com/",
       },
       {
         "@type": "Organization",

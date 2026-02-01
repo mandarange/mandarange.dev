@@ -62,7 +62,7 @@ export interface CompanyLink {
 }
 
 export const COMPANY_LINKS: CompanyLink[] = [
-  { name: "Hypercape", href: "https://biz.hypercape.com/", role: "CTO", icon: ExternalLink },
+  { name: "Hypercape", href: "https://www.hypercape.com/", role: "CTO", icon: ExternalLink },
   { name: "WeKlem", href: "https://www.weklem.com/", role: "CEO", icon: ExternalLink },
 ] as const;
 
@@ -167,7 +167,7 @@ export const COMPANIES = [
     description:
       "K-beauty commerce and supply-chain systems. Architecting Shopify-integrated dropshipping and fulfillment pipelines at scale.",
     stack: ["Java", "Spring Boot", "JPA", "MySQL", "AWS", "Next.js"],
-    href: "https://biz.hypercape.com/",
+    href: "https://www.hypercape.com/",
   },
   {
     role: "CEO",
