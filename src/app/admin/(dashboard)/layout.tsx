@@ -1,13 +1,11 @@
 import { createClientServer } from "@/lib/supabase-server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, FileText, Briefcase, Lightbulb, Mail, LogOut, Globe, AlertCircle } from "lucide-react";
+import { LayoutDashboard, FileText, Mail, LogOut, Globe, AlertCircle } from "lucide-react";
 
 const sidebarItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Writing", href: "/admin/writing", icon: FileText },
-  { name: "Projects", href: "/admin/projects", icon: Briefcase },
-  { name: "Principles", href: "/admin/principles", icon: Lightbulb },
   { name: "Contacts", href: "/admin/contacts", icon: Mail },
 ];
 

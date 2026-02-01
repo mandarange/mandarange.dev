@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
+import { ShellLayout } from "@/components/layout/ShellLayout";
 import { SITE } from "@/lib/site";
 
 const geistSans = Geist({
@@ -164,9 +165,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} antialiased font-sans bg-offwhite text-charcoal`}
       >
-        <Navigation />
-        <main className="pt-24 min-h-screen">{children}</main>
-        <Footer />
+        <ShellLayout nav={<Navigation />} footer={<Footer />}>
+          {children}
+        </ShellLayout>
       </body>
     </html>
   );

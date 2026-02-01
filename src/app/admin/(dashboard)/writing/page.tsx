@@ -2,6 +2,8 @@ import { createClientServer } from "@/lib/supabase-server";
 import { format } from "date-fns";
 import Link from "next/link";
 import { Plus, Edit, Trash2, Eye } from "lucide-react";
+import { deletePost } from "./actions";
+import { DeleteButton } from "./DeleteButton";
 
 export default async function AdminWritingPage() {
   const supabase = await createClientServer();
@@ -65,9 +67,9 @@ export default async function AdminWritingPage() {
                     <Link href={`/admin/writing/${post.id}`} className="p-2 rounded-lg hover:bg-white/5 text-charcoal/40 hover:text-mandarange transition-all">
                       <Edit size={16} />
                     </Link>
-                    <button className="p-2 rounded-lg hover:bg-red-500/10 text-charcoal/40 hover:text-red-500 transition-all">
+                    <DeleteButton action={deletePost.bind(null, post.id)}>
                       <Trash2 size={16} />
-                    </button>
+                    </DeleteButton>
                   </div>
                 </td>
               </tr>

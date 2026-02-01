@@ -1,6 +1,8 @@
 import { createClientServer } from "@/lib/supabase-server";
 import { format } from "date-fns";
 import { Trash2, Mail, User, Calendar } from "lucide-react";
+import { deleteContact } from "./actions";
+import { DeleteButton } from "../writing/DeleteButton";
 
 export default async function AdminContactsPage() {
   const supabase = await createClientServer();
@@ -47,9 +49,11 @@ export default async function AdminContactsPage() {
                   </p>
                 </div>
               </div>
-              <button className="p-3 rounded-xl bg-red-500/5 text-red-500/40 hover:text-red-500 hover:bg-red-500/10 transition-all opacity-0 group-hover:opacity-100">
-                <Trash2 size={18} />
-              </button>
+              <div className="opacity-0 group-hover:opacity-100 transition-all">
+                <DeleteButton action={deleteContact.bind(null, contact.id)}>
+                  <Trash2 size={18} />
+                </DeleteButton>
+              </div>
             </div>
 
             <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
