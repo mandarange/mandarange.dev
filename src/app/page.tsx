@@ -17,7 +17,13 @@ export const metadata: Metadata = {
 
 async function FeaturedWriting() {
   const posts = await getPosts();
-  const featuredPosts = posts.slice(0, 3);
+  const featuredPosts = posts
+    .sort((a, b) => {
+      if (a.is_featured && !b.is_featured) return -1;
+      if (!a.is_featured && b.is_featured) return 1;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    })
+    .slice(0, 3);
 
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -126,6 +132,27 @@ export default async function Home() {
         </Link>
       </section>
 
+      {/* ── Featured Writing ── */}
+      <section className="space-y-8">
+        <div className="flex items-end justify-between border-b border-white/5 pb-4">
+          <SectionHeading title="Featured Writing" eyebrow="Deep dives & playbooks" />
+          <Link href="/writing" className="text-sm font-medium text-mandarange hover:underline flex items-center gap-1 mb-1">
+            View all posts <ArrowRight size={14} />
+          </Link>
+        </div>
+        <Suspense
+          fallback={
+            <div className="grid md:grid-cols-3 gap-6 animate-pulse">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-48 bg-white/5 rounded-2xl" />
+              ))}
+            </div>
+          }
+        >
+          <FeaturedWriting />
+        </Suspense>
+      </section>
+
       {/* ── Career Journey ── */}
       <section className="space-y-10">
         <SectionHeading title="Career Journey" eyebrow="Game Graphics → Web/App → Platform Architecture" />
@@ -197,27 +224,6 @@ export default async function Home() {
             </a>
           ))}
         </div>
-      </section>
-
-      {/* ── Featured Writing ── */}
-      <section className="space-y-8">
-        <div className="flex items-end justify-between border-b border-white/5 pb-4">
-          <SectionHeading title="Featured Writing" eyebrow="Deep dives & playbooks" />
-          <Link href="/writing" className="text-sm font-medium text-mandarange hover:underline flex items-center gap-1 mb-1">
-            View all posts <ArrowRight size={14} />
-          </Link>
-        </div>
-        <Suspense
-          fallback={
-            <div className="grid md:grid-cols-3 gap-6 animate-pulse">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="h-48 bg-white/5 rounded-2xl" />
-              ))}
-            </div>
-          }
-        >
-          <FeaturedWriting />
-        </Suspense>
       </section>
 
       {/* ── Connect ── */}

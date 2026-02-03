@@ -13,6 +13,7 @@ export interface Post {
   tags: string[];
   type: PostType;
   is_draft: boolean;
+  is_featured: boolean;
 }
 
 export interface Project {
