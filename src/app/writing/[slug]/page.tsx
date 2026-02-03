@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getPostBySlug, getPosts } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -22,8 +23,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export const generateMetadata: ({
+  params,
+}: {
+  params: { slug: string };
+}) => Promise<Metadata> = async ({ params }) => {
+  const { slug } = params;
   const post = await getPostBySlug(slug);
   if (!post) return {};
 
@@ -50,7 +55,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       canonical: `${SITE.url}/writing/${slug}`,
     },
   };
-}
+};
 
 function BlogPostingJsonLd({ post, slug }: { post: { title: string; excerpt: string; date: string; updated_at?: string; tags: string[]; content: string }; slug: string }) {
   const schema = {
@@ -99,8 +104,8 @@ function BreadcrumbJsonLd({ postTitle, slug }: { postTitle: string; slug: string
   );
 }
 
-export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function PostPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const post = await getPostBySlug(slug);
 
   if (!post) {
@@ -143,7 +148,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               </div>
             </header>
 
-            <div className="prose prose-invert prose-headings:font-serif prose-headings:italic prose-headings:not-font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h3:text-xl prose-p:text-charcoal/80 prose-p:leading-relaxed prose-li:text-charcoal/80 max-w-none">
+            <div className="prose prose-invert prose-headings:font-serif prose-headings:italic prose-headings:not-font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h3:text-xl prose-p:text-charcoal/80 prose-p:leading-relaxed prose-p:whitespace-pre-line prose-li:text-charcoal/80 prose-li:whitespace-pre-line max-w-none">
               <MDXRemote
                 source={post.content}
                 components={components}
