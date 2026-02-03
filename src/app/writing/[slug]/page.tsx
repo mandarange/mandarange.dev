@@ -29,9 +29,9 @@ export async function generateStaticParams() {
 export const generateMetadata: ({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) => Promise<Metadata> = async ({ params }) => {
-  const { slug } = params;
+  const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return {};
 
@@ -107,8 +107,8 @@ function BreadcrumbJsonLd({ postTitle, slug }: { postTitle: string; slug: string
   );
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const post = await getPostBySlug(slug);
 
   if (!post) {

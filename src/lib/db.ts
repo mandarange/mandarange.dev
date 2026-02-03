@@ -1,4 +1,4 @@
-import { createClientStatic } from "./supabase-server";
+import { createAdminClient, createClientStatic } from "./supabase-server";
 
 export type PostType = "playbook" | "decision" | "case-study" | "notes";
 
@@ -58,14 +58,31 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     .from("posts")
     .select("*")
     .eq("slug", slug)
+    .eq("is_draft", false)
     .single();
+
+  if (!error && data) {
+    return data as Post;
+  }
 
   if (error) {
     console.error("Error fetching post by slug:", error);
+  }
+
+  const admin = createAdminClient();
+  const { data: adminData, error: adminError } = await admin
+    .from("posts")
+    .select("*")
+    .eq("slug", slug)
+    .eq("is_draft", false)
+    .single();
+
+  if (adminError) {
+    console.error("Error fetching post by slug (admin):", adminError);
     return null;
   }
 
-  return data as Post;
+  return (adminData as Post) ?? null;
 }
 
 export async function getProjects(): Promise<Project[]> {
