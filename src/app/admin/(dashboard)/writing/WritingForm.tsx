@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import MDEditor from "@uiw/react-md-editor";
+import dynamic from "next/dynamic";
 import { createPost, updatePost } from "./actions";
 
 interface WritingFormProps {
@@ -23,6 +23,8 @@ const toSlug = (value: string) =>
     .trim()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)+/g, "");
+
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 export default function WritingForm({ post }: WritingFormProps) {
   const [title, setTitle] = useState(post?.title ?? "");
