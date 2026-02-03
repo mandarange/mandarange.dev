@@ -8,6 +8,8 @@ import { TagPill } from "@/components/branding/PostCard";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { SITE } from "@/lib/site";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 
 const components = {
   Callout,
@@ -77,10 +79,7 @@ function BlogPostingJsonLd({ post, slug }: { post: { title: string; excerpt: str
   };
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
+    <script type="application/ld+json">{JSON.stringify(schema)}</script>
   );
 }
 
@@ -96,10 +95,7 @@ function BreadcrumbJsonLd({ postTitle, slug }: { postTitle: string; slug: string
   };
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
+    <script type="application/ld+json">{JSON.stringify(schema)}</script>
   );
 }
 
@@ -148,7 +144,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             </header>
 
             <div className="prose prose-invert prose-headings:font-serif prose-headings:italic prose-headings:not-font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h3:text-xl prose-p:text-charcoal/80 prose-p:leading-relaxed prose-li:text-charcoal/80 max-w-none">
-              <MDXRemote source={post.content} components={components} />
+              <MDXRemote
+                source={post.content}
+                components={components}
+                options={{
+                  mdxOptions: {
+                    remarkPlugins: [remarkGfm, remarkBreaks],
+                  },
+                }}
+              />
             </div>
           </div>
 
