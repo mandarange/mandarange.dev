@@ -9,12 +9,13 @@ export default async function AdminWritingPage() {
   const supabase = await createClientServer();
   const { data: posts } = await supabase
     .from("posts")
-    .select("*")
-    .order("date", { ascending: false });
+    .select("id,title,slug,type,date,is_draft")
+    .order("date", { ascending: false })
+    .limit(200);
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between admin-fade-up">
         <div>
           <h1 className="text-4xl font-serif italic text-charcoal">Writing</h1>
           <p className="text-charcoal/60 mt-2">Manage your articles and notes.</p>
@@ -28,7 +29,7 @@ export default async function AdminWritingPage() {
         </Link>
       </div>
 
-      <div className="overflow-hidden rounded-[2rem] border border-white/5 bg-surface">
+      <div className="overflow-hidden rounded-[2rem] border border-white/5 bg-surface admin-fade-up admin-fade-delay-1">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="border-b border-white/5">

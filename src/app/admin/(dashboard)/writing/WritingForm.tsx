@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
+import MDEditor from "@uiw/react-md-editor";
 import { createPost, updatePost } from "./actions";
 
 interface WritingFormProps {
@@ -27,6 +28,7 @@ export default function WritingForm({ post }: WritingFormProps) {
   const [title, setTitle] = useState(post?.title ?? "");
   const [slug, setSlug] = useState(post?.slug ?? "");
   const [slugEdited, setSlugEdited] = useState(Boolean(post));
+  const [content, setContent] = useState(post?.content ?? "");
 
   const action = post ? updatePost.bind(null, post.id) : createPost;
   const [, formAction, isPending] = useActionState(action, null);
@@ -44,12 +46,16 @@ export default function WritingForm({ post }: WritingFormProps) {
   };
 
   return (
-    <form action={formAction} className="space-y-6">
+    <form action={formAction} className="space-y-6 admin-fade-up admin-fade-delay-1">
       <div className="space-y-2">
-        <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30">
+        <label
+          htmlFor="title"
+          className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30"
+        >
           Title
         </label>
         <input
+          id="title"
           name="title"
           type="text"
           value={title}
@@ -60,10 +66,14 @@ export default function WritingForm({ post }: WritingFormProps) {
       </div>
 
       <div className="space-y-2">
-        <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30">
+        <label
+          htmlFor="slug"
+          className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30"
+        >
           Slug
         </label>
         <input
+          id="slug"
           name="slug"
           type="text"
           value={slug}
@@ -75,10 +85,14 @@ export default function WritingForm({ post }: WritingFormProps) {
 
       <div className="grid gap-6 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30">
+          <label
+            htmlFor="type"
+            className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30"
+          >
             Type
           </label>
           <select
+            id="type"
             name="type"
             defaultValue={post?.type ?? "playbook"}
             className="w-full bg-offwhite border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-mandarange/20 focus:border-mandarange transition-all"
@@ -92,10 +106,14 @@ export default function WritingForm({ post }: WritingFormProps) {
         </div>
 
         <div className="space-y-2">
-          <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30">
+          <label
+            htmlFor="tags"
+            className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30"
+          >
             Tags
           </label>
           <input
+            id="tags"
             name="tags"
             type="text"
             defaultValue={post?.tags?.join(", ") ?? ""}
@@ -106,10 +124,14 @@ export default function WritingForm({ post }: WritingFormProps) {
       </div>
 
       <div className="space-y-2">
-        <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30">
+        <label
+          htmlFor="excerpt"
+          className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30"
+        >
           Excerpt
         </label>
         <textarea
+          id="excerpt"
           name="excerpt"
           rows={2}
           defaultValue={post?.excerpt ?? ""}
@@ -118,15 +140,32 @@ export default function WritingForm({ post }: WritingFormProps) {
       </div>
 
       <div className="space-y-2">
-        <label className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30">
+        <label
+          htmlFor="content"
+          className="text-[10px] font-mono font-bold uppercase tracking-widest text-charcoal/30"
+        >
           Content
         </label>
+        <div
+          data-color-mode="dark"
+          className="rounded-xl border border-white/10 bg-offwhite overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.02)]"
+        >
+          <MDEditor
+            value={content}
+            onChange={(value) => setContent(value ?? "")}
+            height={360}
+            preview="live"
+            className="border-0"
+            textareaProps={{ placeholder: "Write in Markdown..." }}
+          />
+        </div>
         <textarea
+          id="content"
           name="content"
-          rows={14}
-          defaultValue={post?.content ?? ""}
-          className="w-full bg-offwhite border border-white/10 rounded-xl px-4 py-3 font-mono text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-mandarange/20 focus:border-mandarange transition-all"
+          value={content}
+          readOnly
           required
+          className="sr-only"
         />
       </div>
 

@@ -4,7 +4,7 @@ import WritingForm from "../WritingForm";
 export default function NewWritingPage() {
   return (
     <div className="space-y-8">
-      <div className="space-y-2">
+      <div className="space-y-2 admin-fade-up">
         <Link href="/admin/writing" className="text-sm text-charcoal/60 hover:text-charcoal">
           Back to Writing
         </Link>

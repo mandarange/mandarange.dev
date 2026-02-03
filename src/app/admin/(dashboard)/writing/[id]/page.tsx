@@ -12,7 +12,7 @@ export default async function EditWritingPage({
   const supabase = await createClientServer();
   const { data: post } = await supabase
     .from("posts")
-    .select("*")
+    .select("id,title,slug,excerpt,content,type,tags,is_draft")
     .eq("id", id)
     .single();
 
@@ -22,7 +22,7 @@ export default async function EditWritingPage({
 
   return (
     <div className="space-y-8">
-      <div className="space-y-2">
+      <div className="space-y-2 admin-fade-up">
         <Link href="/admin/writing" className="text-sm text-charcoal/60 hover:text-charcoal">
           Back to Writing
         </Link>

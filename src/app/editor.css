@@ -1,0 +1,39 @@
+@import "@uiw/react-md-editor/markdown-editor.css";
+@import "@uiw/react-markdown-preview/markdown.css";
+
+.admin-fade-up {
+  animation: adminFadeUp 0.5s ease-out both;
+}
+
+.admin-fade-delay-1 {
+  animation-delay: 0.08s;
+}
+
+.admin-fade-delay-2 {
+  animation-delay: 0.16s;
+}
+
+@keyframes adminFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.w-md-editor {
+  --md-editor-background-color: #0d0d0d;
+  --md-editor-border-color: rgba(255, 255, 255, 0.1);
+  --md-editor-toolbar-background-color: #141414;
+  --md-editor-toolbar-hover-background-color: rgba(255, 107, 0, 0.12);
+  --md-editor-toolbar-color: #f5f5f5;
+  --md-editor-toolbar-active-color: #ff6b00;
+}
+
+.w-md-editor .wmde-markdown,
+.w-md-editor .w-md-editor-text {
+  color: #f5f5f5;
+}
