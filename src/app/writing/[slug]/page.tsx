@@ -16,6 +16,9 @@ const components = {
   Callout,
 };
 
+export const dynamicParams = true;
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   const posts = await getPosts();
   return posts.map((post) => ({
